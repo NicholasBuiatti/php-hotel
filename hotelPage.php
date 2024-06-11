@@ -39,7 +39,7 @@ $hotels = [
     ],
 
 ];
-
+$parking = $_GET["btnradio"]
 ?>
 
 <!DOCTYPE html>
@@ -67,6 +67,7 @@ $hotels = [
 
                 <?php
                 foreach ($hotels[0] as $key => $value) {
+
                     echo "<th scope='col'>" . $key . "</th>";
                 }
                 ?>
@@ -78,7 +79,13 @@ $hotels = [
             <?php
             foreach ($hotels as $hotel) {
                 echo "<tr>";
+                if ($hotel['parking'] == true) {
+                    $hotel['parking'] = 'yes';
+                } else {
+                    $hotel['parking'] = 'no';
+                }
                 foreach ($hotel as $key => $value) {
+
                     echo "<td scope='row'>" . $value . "</td>";
                 }
                 echo "</tr>";
@@ -88,6 +95,75 @@ $hotels = [
         </tbody>
     </table>
 
+    <h1>Hotel della Ricerca</h1>
+
+    <table class="table table-bordered border-primary">
+        <thead>
+            <tr>
+
+                <?php
+                foreach ($hotels[0] as $key => $value) {
+
+                    echo "<th scope='col'>" . $key . "</th>";
+                }
+                ?>
+
+            </tr>
+        </thead>
+        <tbody>
+
+            <?php
+            foreach ($hotels as $hotel) {
+                if ($parking == 'yes' && $hotel['parking'] == true) {
+                    echo "<tr>";
+                    // MI TRASFORMI I TRUE IN YES E I FALSE IN NO PER I PARKING
+                    if ($hotel['parking'] == true) {
+                        $hotel['parking'] = 'yes';
+                    } else {
+                        $hotel['parking'] = 'no';
+                    }
+                    foreach ($hotel as $key => $value) {
+
+                        echo "<td scope='row'>" . $value . "</td>";
+                    }
+                    echo "</tr>";
+                } elseif ($parking == 'no' && $hotel['parking'] == false) {
+                    echo "<tr>";
+                    // MI TRASFORMI I TRUE IN YES E I FALSE IN NO PER I PARKING
+                    if ($hotel['parking'] == true) {
+                        $hotel['parking'] = 'yes';
+                    } else {
+                        $hotel['parking'] = 'no';
+                    }
+                    foreach ($hotel as $key => $value) {
+
+                        echo "<td scope='row'>" . $value . "</td>";
+                    }
+                    echo "</tr>";
+                } elseif ($parking == 'all') {
+                    echo "<tr>";
+                    // MI TRASFORMI I TRUE IN YES E I FALSE IN NO PER I PARKING
+                    if ($hotel['parking'] == true) {
+                        $hotel['parking'] = 'yes';
+                    } else {
+                        $hotel['parking'] = 'no';
+                    }
+                    foreach ($hotel as $key => $value) {
+
+                        echo "<td scope='row'>" . $value . "</td>";
+                    }
+                    echo "</tr>";
+                }
+            }
+            ?>
+
+        </tbody>
+    </table>
+    <h2>
+        <?php
+        echo $parking
+        ?>
+    </h2>
 </body>
 
 </html>

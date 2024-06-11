@@ -39,7 +39,8 @@ $hotels = [
     ],
 
 ];
-$parking = $_GET["btnradio"]
+$parking = $_GET["btnradio"];
+$voto = $_GET["vote"];
 ?>
 
 <!DOCTYPE html>
@@ -114,40 +115,34 @@ $parking = $_GET["btnradio"]
 
             <?php
             foreach ($hotels as $hotel) {
-                if ($parking == 'yes' && $hotel['parking'] == true) {
+                // MI TRASFORMI I TRUE IN YES E I FALSE IN NO PER I PARKING
+                if ($hotel['parking'] == true) {
+                    $hotel['parking'] = 'yes';
+                } else {
+                    $hotel['parking'] = 'no';
+                }
+                if ($parking == 'yes' && $hotel['parking'] == 'yes' && $hotel['vote'] >= $voto) {
                     echo "<tr>";
                     // MI TRASFORMI I TRUE IN YES E I FALSE IN NO PER I PARKING
-                    if ($hotel['parking'] == true) {
-                        $hotel['parking'] = 'yes';
-                    } else {
-                        $hotel['parking'] = 'no';
-                    }
+
                     foreach ($hotel as $key => $value) {
 
                         echo "<td scope='row'>" . $value . "</td>";
                     }
                     echo "</tr>";
-                } elseif ($parking == 'no' && $hotel['parking'] == false) {
+                } elseif ($parking == 'no' && $hotel['parking'] == 'no' && $hotel['vote'] >= $voto) {
                     echo "<tr>";
                     // MI TRASFORMI I TRUE IN YES E I FALSE IN NO PER I PARKING
-                    if ($hotel['parking'] == true) {
-                        $hotel['parking'] = 'yes';
-                    } else {
-                        $hotel['parking'] = 'no';
-                    }
+
                     foreach ($hotel as $key => $value) {
 
                         echo "<td scope='row'>" . $value . "</td>";
                     }
                     echo "</tr>";
-                } elseif ($parking == 'all') {
+                } elseif ($parking == 'all' && $hotel['vote'] >= $voto) {
                     echo "<tr>";
                     // MI TRASFORMI I TRUE IN YES E I FALSE IN NO PER I PARKING
-                    if ($hotel['parking'] == true) {
-                        $hotel['parking'] = 'yes';
-                    } else {
-                        $hotel['parking'] = 'no';
-                    }
+
                     foreach ($hotel as $key => $value) {
 
                         echo "<td scope='row'>" . $value . "</td>";
@@ -161,7 +156,8 @@ $parking = $_GET["btnradio"]
     </table>
     <h2>
         <?php
-        echo $parking
+        echo $parking;
+        echo $voto;
         ?>
     </h2>
 </body>

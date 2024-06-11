@@ -29,7 +29,11 @@
                 <input type="radio" class="btn-check" value='all' name="btnradio" id="btnradio3" autocomplete="off" checked>
                 <label class="btn btn-outline-primary" for="btnradio3">ALL</label>
             </div>
-            <button type="submit" class="btn btn-success">Ricerca</button>
+
+            <p>Seleziona da che voto vuoi visualizzare gli hotel</p>
+            <input type="number" min='1' max='5' name='vote'> <br>
+
+            <button type="submit" class="btn btn-success mt-3">Ricerca</button>
         </form>
     </div>
 
